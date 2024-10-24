@@ -1,0 +1,942 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #8e44ad;
+    --dark-color: #2c3e50;
+    --light-color: #ecf0f1;
+    --success-color: #2ecc71;
+    --warning-color: #f39c12;
+    --danger-color: #e74c3c;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: var(--dark-color);
+    scroll-behavior: smooth;
+    overflow-x: hidden; /* Menjaga agar tidak ada elemen yang keluar dari viewport */
+}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #8e44ad;
+    --dark-color: #2c3e50;
+    --light-color: #ecf0f1;
+}
+
+body, html {
+    font-family: 'Poppins', sans-serif;
+    color: var(--dark-color);
+}
+
+#header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: #fff;
+    text-align: center;
+    padding: 100px 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.floating-shapes {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.shape {
+    position: absolute;
+    opacity: 0.1;
+    border-radius: 50%;
+    animation: floatShape 15s infinite ease-in-out;
+}
+
+@keyframes floatShape {
+    0% {
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-20px) scale(1.2);
+    }
+    100% {
+        transform: translateY(0) scale(1);
+    }
+}
+
+.circle {
+    background-color: #3498db;
+    width: 40px;
+    height: 40px;
+}
+
+.square {
+    background-color: #e74c3c;
+    width: 50px;
+    height: 50px;
+}
+
+.triangle {
+    width: 0;
+    height: 0;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-bottom: 60px solid #2ecc71;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+body.dark-mode .container {
+    background-color: #1e1e1e;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Navbar styles */
+#navbar {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    position: relative;
+    z-index: 1000;
+    width: 100%; /* Tambahkan width 100% agar tetap berada di viewport */
+}
+
+#navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+#nav-links li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+#burger-menu {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #fff;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    #navbar {
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+        background-color: var(--dark-color);
+        padding: 10px 20px;
+    }
+
+    #navbar .container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: var(--dark-color);
+        position: absolute;
+        top: 60px; /* Sesuaikan dengan tinggi navbar */
+        left: 0;
+        padding: 10px 0;
+    }
+
+    #nav-links.active {
+        display: flex;
+    }
+
+    #nav-links li {
+        width: 100%;
+        margin: 0;
+        text-align: left;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    #nav-links li a {
+        display: block;
+        padding: 10px 20px;
+    }
+
+    #burger-menu {
+        display: block;
+        font-size: 30px;
+    }
+
+    body {
+        padding-top: 60px; /* Sesuaikan dengan tinggi navbar */
+    }
+}
+
+/* Header styles */
+#header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: #fff;
+    text-align: center;
+    padding: 100px 20px; /* Sesuaikan padding agar proporsional di mobile */
+    position: relative;
+    overflow: hidden;
+}
+
+#header h1 {
+    font-size: 2.5rem; /* Ubah ukuran font untuk mobile */
+    margin-bottom: 20px;
+}
+
+#header p {
+    font-size: 1rem;
+    margin-bottom: 30px;
+}
+
+/* Section styles */
+.section {
+    padding: 40px 20px; /* Sesuaikan padding agar tidak terlalu besar di mobile */
+}
+
+.section h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    color: var(--dark-color);
+}
+
+/* About section */
+.about-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.about-img {
+    flex: 1;
+    margin-right: 40px;
+    min-width: 250px;
+}
+
+.about-img img {
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.about-text {
+    flex: 1;
+    min-width: 250px;
+}
+
+/* Skills section */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+}
+
+.skill-item {
+    text-align: center;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.skill-item:hover {
+    transform: translateY(-5px);
+}
+
+/* Projects section */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Sesuaikan min-width */
+    gap: 20px;
+}
+
+.project-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+.project-card img {
+    width: 100%;
+    height: 180px; /* Sesuaikan tinggi gambar */
+    object-fit: cover;
+}
+
+.project-card-content {
+    padding: 20px;
+}
+
+.project-card h3 {
+    margin-bottom: 10px;
+    color: var(--dark-color);
+}
+
+/* Contact section */
+.contact-info {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.contact-item {
+    text-align: center;
+    flex: 1;
+    min-width: 150px;
+}
+
+.contact-item i {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+#contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#contact-form input,
+#contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#contact-form textarea {
+    height: 150px;
+}
+
+/* Button styles */
+.btn {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.btn:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Footer styles */
+footer {
+    background-color: var(--dark-color);
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* Scroll to top button */
+#scrollTopBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: var(--primary-color);
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 50%;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+#scrollTopBtn:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Floating shapes */
+.floating-shapes {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.shape {
+    position: absolute;
+    opacity: 0.1;
+}
+
+/* Responsive Adjustments for Flex and Grid Layouts */
+@media (max-width: 768px) {
+    .about-info {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .about-img,
+    .about-text {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Ubah ukuran minimal kolom */
+    }
+
+    .project-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Ubah ukuran minimal kolom */
+    }
+}
+
+.project-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+.project-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.project-card-content {
+    padding: 20px;
+}
+
+.project-card h3 {
+    margin-bottom: 10px;
+    color: var(--dark-color);
+}
+
+/* Contact section */
+.contact-info {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.contact-item {
+    text-align: center;
+    flex: 1;
+    min-width: 150px;
+}
+
+.contact-item i {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+#contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#contact-form input,
+#contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#contact-form textarea {
+    height: 150px;
+}
+
+/* Button styles */
+.btn {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.btn:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Footer styles */
+footer {
+    background-color: var(--dark-color);
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* Scroll to top button */
+#scrollTopBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: var(--primary-color);
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 50%;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+#scrollTopBtn:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Floating shapes */
+.floating-shapes {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.shape {
+    position: absolute;
+    opacity: 0.1;
+}
+
+/* Responsive Adjustments for Flex and Grid Layouts */
+@media (max-width: 768px) {
+    .about-info {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .about-img,
+    .about-text {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+/* Skills section */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+}
+
+.skill-item {
+    text-align: left; /* Updated */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.skill-item:hover {
+    transform: translateY(-5px);
+}
+
+.skill-item i {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+/* Skill progress bar */
+.skill-bar {
+    width: 100%;
+    background-color: #e0e0e0;
+    height: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.skill-progress {
+    height: 100%;
+    background-color: var(--primary-color);
+    width: 0;
+    transition: width 1s ease-in-out;
+}
+.skills-chart-section {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.skills-chart-section canvas {
+    max-width: 100%;
+    height: 400px;
+}
+/* Tambahan styling untuk grafik keahlian */
+.skills-chart-section canvas {
+    max-width: 100%;
+    height: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Menambahkan bayangan pada grafik */
+    border-radius: 10px; /* Membuat sudut grafik lebih halus */
+}
+
+/* Styling tambahan untuk judul "Grafik Keahlian Pemrograman" */
+.skills-chart-section h2 {
+    font-size: 2rem;
+    color: var(--primary-color); /* Menggunakan warna utama */
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+.dark-mode-toggle {
+    position: fixed !important;
+    top: 20px !important;
+    right: 20px !important;
+    background-color: var(--primary-color) !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 50% !important;
+    width: 50px !important;
+    height: 50px !important;
+    font-size: 24px !important;
+    cursor: pointer !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1) !important;
+    z-index: 1001 !important;
+    transition: background-color 0.3s ease !important;
+}
+
+.dark-mode-toggle:hover {
+    background-color: var(--secondary-color) !important;
+}
+.title-toggle {
+    opacity: 1;
+    transition: opacity 1s ease-in-out; /* Adjust the duration if needed */
+}
+
+.title-toggle.hidden {
+    opacity: 0;
+}
+.hidden {
+    display: none;
+}
+
+.title-toggle {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.hidden {
+    opacity: 0;
+    display: none;
+}
+.floating-shapes {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.shape {
+    position: absolute;
+    opacity: 0.1;
+    border-radius: 50%;
+    animation: floatShape 15s infinite ease-in-out;
+}
+
+@keyframes floatShape {
+    0% {
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-20px) scale(1.2);
+    }
+    100% {
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Add more colors and sizes */
+.circle {
+    background-color: #3498db;
+    width: 40px;
+    height: 40px;
+}
+
+.square {
+    background-color: #e74c3c;
+    width: 50px;
+    height: 50px;
+}
+
+.triangle {
+    width: 0;
+    height: 0;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-bottom: 60px solid #2ecc71;
+}
+/* Glitch effect for the text */
+@keyframes glitch {
+    0% {
+        transform: translate(0);
+        opacity: 1;
+    }
+    10% {
+        transform: translate(-2px, -2px);
+        opacity: 0.8;
+    }
+    20% {
+        transform: translate(2px, 2px);
+        opacity: 0.6;
+    }
+    30% {
+        transform: translate(-2px, 2px);
+        opacity: 0.8;
+    }
+    40% {
+        transform: translate(2px, -2px);
+        opacity: 1;
+    }
+    50% {
+        transform: translate(0);
+        opacity: 0.9;
+    }
+    60% {
+        transform: translate(1px, -1px);
+        opacity: 0.7;
+    }
+    70% {
+        transform: translate(-1px, 1px);
+        opacity: 0.9;
+    }
+    80% {
+        transform: translate(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(0);
+        opacity: 1;
+    }
+}
+
+/* Apply glitch effect */
+.glitch {
+    position: relative;
+    font-size: 2.5rem;
+    color: white;
+    text-shadow: 1px 1px red, -1px -1px blue;
+    animation: glitch 1s infinite;
+}
+/* Animated Background Gradient */
+#header {
+    background: linear-gradient(-45deg, #3498db, #8e44ad, #2ecc71, #f1c40f);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Neon Text Effect for Skills */
+.skill-item h3 {
+    color: #fff;
+    text-shadow: 0 0 5px #3498db,
+                 0 0 10px #3498db,
+                 0 0 20px #3498db,
+                 0 0 40px #3498db;
+    animation: neonPulse 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes neonPulse {
+    from { text-shadow: 0 0 5px #3498db, 0 0 10px #3498db, 0 0 20px #3498db; }
+    to { text-shadow: 0 0 10px #3498db, 0 0 20px #3498db, 0 0 30px #3498db; }
+}
+
+/* Cool Hover Effect for Project Cards */
+.project-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.project-card:hover::before {
+    left: 100%;
+}
+
+/* Animated Border for Contact Form */
+#contact-form input,
+#contact-form textarea {
+    border: 2px solid transparent;
+    background: 
+        linear-gradient(white, white) padding-box,
+        linear-gradient(45deg, #3498db, #8e44ad) border-box;
+    animation: borderRotate 4s linear infinite;
+}
+
+@keyframes borderRotate {
+    from { border-image: linear-gradient(0deg, #3498db, #8e44ad) 1; }
+    to { border-image: linear-gradient(360deg, #3498db, #8e44ad) 1; }
+}
+
+/* Particle Effects for Header */
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* Section Dividers */
+.section::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: linear-gradient(45deg, transparent 33.33%, #fff 33.33%, #fff 66.66%, transparent 66.66%);
+    background-size: 30px 30px;
+}
+
+/* Skill Progress Animation */
+.skill-progress {
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-progress::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
+    );
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    100% { left: 100%; }
+}
+
+/* 3D Button Effect */
+.btn {
+    transform-style: preserve-3d;
+    transition: transform 0.2s;
+}
+
+.btn:active {
+    transform: translateY(4px);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+}
+@media (min-width: 769px) {
+    #burger-menu {
+        display: none;
+    }
+
+    #nav-links {
+        display: flex !important;
+    }
+}
+}
