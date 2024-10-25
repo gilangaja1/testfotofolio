@@ -10,14 +10,37 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        .title-toggle {
-            opacity: 1;
-            transition: opacity 0.5s ease-in-out;
+        /* Tambahkan smooth scrolling */
+        html {
+            scroll-behavior: smooth;
         }
-        .hidden {
-            opacity: 0;
+        /* Tambahan styling untuk about-text jika diperlukan */
+        .about-text {
+            margin-left: 20px;
+            padding: 10px;
         }
-    </style>    
+
+        /* Dark mode styles */
+        body.dark-mode {
+            background-color: #333;
+            color: #fff;
+        }
+
+        .dark-mode .section {
+            background-color: #222;
+        }
+
+        .dark-mode .skill-item,
+        .dark-mode .contact-item {
+            background-color: #444;
+            color: #fff;
+        }
+
+        .dark-mode .btn {
+            background-color: #555;
+            color: #fff;
+        }
+    </style>
 </head>
 <body>
     <div id="navbar">

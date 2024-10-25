@@ -930,13 +930,4 @@ footer {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--secondary-color);
 }
-@media (min-width: 769px) {
-    #burger-menu {
-        display: none;
-    }
-
-    #nav-links {
-        display: flex !important;
-    }
-}
 }

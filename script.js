@@ -1,19 +1,33 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Dark mode toggle
+    // --- Dark mode toggle ---
     const darkModeToggle = document.getElementById('darkModeToggle');
     const body = document.body;
-    const title = document.querySelector('.title-toggle');
-    console.log("Script is running!"); // This will check if your script is loaded
 
-    if (title) {
-        console.log("Title element found"); // This will check if the title is selected
-        setInterval(() => {
-            title.classList.toggle('hidden');
-            console.log("Toggled title visibility"); // Log when toggling happens
-        }, 3000); // 3 seconds interval
-    } else {
-        console.log("Title element not found");
+    if (darkModeToggle) {
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', body.classList.contains('dark-mode'));
+        });
+
+        if (localStorage.getItem('darkMode') === 'true') {
+            body.classList.add('dark-mode');
+        }
     }
+
+    // --- Kode Baru: Ripple Button Effect (Tambahkan di sini, di bawah Dark Mode Toggle) ---
+    const buttons = document.querySelectorAll('.btn');
+    buttons.forEach(button => {
+        button.addEventListener('click', function (e) {
+            let ripple = document.createElement('span');
+            ripple.classList.add('ripple');
+            ripple.style.left = `${e.clientX - this.offsetLeft}px`;
+            ripple.style.top = `${e.clientY - this.offsetTop}px`;
+            this.appendChild(ripple);
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+    });
 
     if (darkModeToggle) {
         darkModeToggle.addEventListener('click', () => {
@@ -73,11 +87,24 @@ function revealSkills() {
         observer.observe(skill);
     });
 }
-//title toogle
-if (window.innerWidth <= 768 && title) {
-    setInterval(() => {
-        title.classList.toggle('hidden');
-    }, 3000);
+
+// Typing Effect for Header Title
+function typeEffect() {
+    const title = document.querySelector('#gilang-aditya');
+    if (!title) return;  // Prevent error if title is not found
+
+    const text = title.textContent;
+    title.textContent = '';
+
+    let i = 0;
+    const typing = setInterval(() => {
+        if (i < text.length) {
+            title.textContent += text.charAt(i);
+            i++;
+        } else {
+            clearInterval(typing);
+        }
+    }, 100);
 }
 
 // Tilt effect for project cards
@@ -108,7 +135,7 @@ function addTiltEffect() {
 
 // Initialize Enhancements
 document.addEventListener('DOMContentLoaded', () => {
-    const particleCount = window.innerWidth > 768 ? 50 : 20; // Laptop 50, Mobile 20
+    createParticles();
     revealSkills();
     typeEffect();
     addTiltEffect();
@@ -159,15 +186,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Skill Chart (Chart.js)
+    // --- Skill Chart (Chart.js) ---
     const ctx = document.getElementById('programmingSkillsChart').getContext('2d');
     const programmingSkillsChart = new Chart(ctx, {
-        type: 'bar', // atau 'radar', 'pie', dll.
+        type: 'bar',
         data: {
             labels: ['HTML', 'CSS', 'JavaScript', 'PHP', 'React', 'SQL'],
             datasets: [{
                 label: 'Tingkat Keahlian',
-                data: [90, 80, 85, 70, 75, 65], // Atur sesuai tingkat keahlian
+                data: [90, 80, 85, 70, 75, 65],
                 backgroundColor: 'rgba(52, 152, 219, 0.7)',
                 borderColor: 'rgba(52, 152, 219, 1)',
                 borderWidth: 1
@@ -181,6 +208,17 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
+
+    // --- Kode Baru: Scroll Animations (Tambahkan di sini, di bawah Skill Chart) ---
+    const scrollElements = document.querySelectorAll('.scroll-element');
+    const scrollObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animated');
+            }
+        });
+    });
+    scrollElements.forEach(el => scrollObserver.observe(el));
 
     // Scroll animations
     const animateOnScroll = () => {
@@ -199,13 +237,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Burger Menu Toggle (Improved for Mobile)
     const burgerMenu = document.getElementById('burger-menu');
-const navLinks = document.getElementById('nav-links');
-if (burgerMenu && navLinks) {
-    burgerMenu.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        gsap.fromTo(navLinks, { x: '-100%' }, { x: '0%', duration: 0.5 });
-    });
-}
+    const navLinks = document.getElementById('nav-links');
+
+    if (burgerMenu && navLinks) {
+        burgerMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            // Add smooth slide-in animation for mobile
+            gsap.fromTo(navLinks, { x: '-100%' }, { x: '0%', duration: 0.5, ease: 'power2.inOut' });
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+    }
 
      // Animasi untuk chart saat muncul (GSAP + ScrollTrigger)
      if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
@@ -378,7 +424,10 @@ const projects = [
         // Mobile-specific animations
         const isMobile = window.innerWidth <= 768;
 
-        // Header Animation
+         // --- GSAP Scroll Animations ---
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
+
         gsap.from('#header h1, #header p, #header .btn', {
             opacity: 0,
             y: 20,
@@ -386,6 +435,21 @@ const projects = [
             ease: 'power2.out',
             stagger: 0.2,
         });
+
+        // --- Parallax Animations ---
+        gsap.utils.toArray('.parallax-element').forEach((el) => {
+            gsap.to(el, {
+                yPercent: 20,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: el,
+                    start: 'top bottom',
+                    end: 'bottom top',
+                    scrub: true,
+                }
+            });
+        });
+    }
 
         // Floating Shapes Animation (Slower for mobile to reduce performance impact)
         const shapeSpeed = isMobile ? 15 : 10;
