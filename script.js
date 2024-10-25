@@ -480,3 +480,64 @@ const projects = [
     }
 
 });
+
+// Tambahkan kode ini di JavaScript Anda
+function createSnowfall() {
+    const header = document.querySelector('#header');
+    if (!header) return;
+
+    const snowflakeCount = 30;
+    for (let i = 0; i < snowflakeCount; i++) {
+        const snowflake = document.createElement('div');
+        snowflake.className = 'snowflake';
+        snowflake.style.left = Math.random() * 100 + '%';
+        snowflake.style.animationDuration = `${Math.random() * 3 + 2}s`; 
+        header.appendChild(snowflake);
+    }
+}
+
+// Panggil fungsi di dalam event listener
+document.addEventListener('DOMContentLoaded', function() {
+    createSnowfall();
+    // Panggilan fungsi atau kode lain yang sudah ada sebelumnya
+});
+
+function animateSkillBars() {
+    const skillBars = document.querySelectorAll('.skill-item .progress');
+    skillBars.forEach((bar) => {
+        const width = bar.getAttribute('data-skill');
+        bar.style.width = `${width}%`;
+        bar.style.transition = 'width 1s ease-in-out';
+        bar.style.boxShadow = '0px 0px 10px rgba(0, 255, 255, 0.7)';
+    });
+}
+
+// Panggil fungsi di dalam ScrollTrigger atau event scroll
+document.addEventListener('DOMContentLoaded', function() {
+    // Panggilan fungsi createSnowfall dan lainnya...
+    animateSkillBars();
+});
+
+function startConfetti() {
+    const confettiCount = 100;
+    const contactSection = document.querySelector('#kontak');
+    for (let i = 0; i < confettiCount; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + '%';
+        confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        confetti.style.animationDuration = `${Math.random() * 2 + 3}s`;
+        contactSection.appendChild(confetti);
+    }
+}
+
+// Event listener scroll untuk memicu confetti di bagian Kontak
+document.addEventListener('DOMContentLoaded', function() {
+    window.addEventListener('scroll', () => {
+        const contactPosition = document.querySelector('#kontak').getBoundingClientRect().top;
+        if (contactPosition < window.innerHeight) {
+            startConfetti();
+        }
+    });
+});
+
