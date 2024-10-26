@@ -541,3 +541,51 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// Simple AI Chatbot
+function initChatbot() {
+    const chatbotButton = document.getElementById('chatbotButton');
+    const chatbotWindow = document.getElementById('chatbotWindow');
+
+    // Menampilkan atau menyembunyikan chatbot saat tombol ditekan
+chatbotButton.addEventListener("click", () => {
+    if (chatbotWindow.style.display === "none" || chatbotWindow.style.display === "") {
+        chatbotWindow.style.display = "block";
+    } else {
+        chatbotWindow.style.display = "none";
+    }
+});
+
+    chatbotButton.addEventListener('click', () => {
+        chatbotWindow.classList.toggle('open');
+    });
+
+    const responses = {
+        "hello": "Hi there! How can I assist you?",
+        "portfolio": "This portfolio showcases my skills and projects. Let me know if you want details!",
+        "contact": "You can reach out to me via the contact section!",
+    };
+
+    const chatbotInput = document.getElementById('chatbotInput');
+    const chatbotMessages = document.getElementById('chatbotMessages');
+
+    chatbotInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            const userInput = chatbotInput.value.toLowerCase();
+            const response = responses[userInput] || "I'm here to help, but I didn’t understand that.";
+            const userMessage = document.createElement('div');
+            userMessage.className = 'chatbot-user';
+            userMessage.textContent = chatbotInput.value;
+            chatbotMessages.appendChild(userMessage);
+
+            const botMessage = document.createElement('div');
+            botMessage.className = 'chatbot-bot';
+            botMessage.textContent = response;
+            chatbotMessages.appendChild(botMessage);
+
+            chatbotInput.value = '';
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', initChatbot);
+
