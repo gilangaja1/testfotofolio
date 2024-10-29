@@ -1012,5 +1012,36 @@ footer {
     cursor: pointer;
     z-index: 2000; /* Tingkatkan z-index agar berada di depan elemen lain */
 }
+#chatbotWindow {
+    display: none; /* Tersembunyi secara default */
+    position: fixed;
+    bottom: 50px;
+    right: 20px;
+    width: 300px;
+    height: 400px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    overflow: auto;
+    z-index: 1000;
+}
 
+#chatbotWindow.open {
+    display: block; /* Muncul saat tombol di klik */
+}
+
+.chat-messages {
+    height: 80%;
+    overflow-y: scroll;
+    margin-bottom: 10px;
+}
+
+#chatbotInput {
+    width: calc(100% - 20px);
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
 }

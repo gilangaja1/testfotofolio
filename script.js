@@ -14,6 +14,48 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Simple AI Chatbot
+  function initChatbot() {
+    const chatbotButton = document.getElementById('chatbotButton');
+    const chatbotWindow = document.getElementById('chatbotWindow');
+    const chatbotMessages = document.getElementById('chatbotMessages'); // Tambahkan ini
+    const chatbotInput = document.getElementById('chatbotInput');
+
+    // Menampilkan atau menyembunyikan chatbot saat tombol ditekan
+    chatbotButton.addEventListener('click', () => {
+      chatbotWindow.classList.toggle('open'); // Gunakan class 'open' untuk mengontrol tampilan
+    });
+
+    const responses = {
+      "hello": "Hi there! How can I assist you?",
+      "portfolio": "This portfolio showcases my skills and projects. Let me know if you want details!",
+      "contact": "You can reach out to me via the contact section!",
+    };
+
+    chatbotInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        const userInput = chatbotInput.value.toLowerCase();
+        const response = responses[userInput] || "I'm here to help, but I didn’t understand that.";
+
+        // Membuat elemen pesan pengguna
+        const userMessage = document.createElement('div');
+        userMessage.className = 'chatbot-user';
+        userMessage.textContent = chatbotInput.value;
+        chatbotMessages.appendChild(userMessage);
+
+        // Membuat elemen pesan bot
+        const botMessage = document.createElement('div');
+        botMessage.className = 'chatbot-bot';
+        botMessage.textContent = response;
+        chatbotMessages.appendChild(botMessage);
+
+        chatbotInput.value = '';
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', initChatbot);
+  
     // --- Kode Baru: Ripple Button Effect (Tambahkan di sini, di bawah Dark Mode Toggle) ---
     const buttons = document.querySelectorAll('.btn');
     buttons.forEach(button => {
@@ -78,7 +120,7 @@ function revealSkills() {
                 entry.target.style.transform = 'translateY(0)';
             }
         });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.1 }); 
 
     skills.forEach(skill => {
         skill.style.opacity = '0';
@@ -531,6 +573,13 @@ function startConfetti() {
     }
 }
 
+ // Initialize Enhancements and Chatbot
+ createParticles();
+ revealSkills();
+ typeEffect();
+ addTiltEffect();
+ initChatbot(); // Call initChatbot here
+
 // Event listener scroll untuk memicu confetti di bagian Kontak
 document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', () => {
@@ -538,26 +587,16 @@ document.addEventListener('DOMContentLoaded', function() {
         if (contactPosition < window.innerHeight) {
             startConfetti();
         }
+
+        
     });
 });
 
-// Simple AI Chatbot
-function initChatbot() {
+document.addEventListener('DOMContentLoaded', () => {
     const chatbotButton = document.getElementById('chatbotButton');
     const chatbotWindow = document.getElementById('chatbotWindow');
-
-    // Menampilkan atau menyembunyikan chatbot saat tombol ditekan
-chatbotButton.addEventListener("click", () => {
-    if (chatbotWindow.style.display === "none" || chatbotWindow.style.display === "") {
-        chatbotWindow.style.display = "block";
-    } else {
-        chatbotWindow.style.display = "none";
-    }
-});
-
-    chatbotButton.addEventListener('click', () => {
-        chatbotWindow.classList.toggle('open');
-    });
+    const chatbotMessages = document.getElementById('chatbotMessages');
+    const chatbotInput = document.getElementById('chatbotInput');
 
     const responses = {
         "hello": "Hi there! How can I assist you?",
@@ -565,27 +604,34 @@ chatbotButton.addEventListener("click", () => {
         "contact": "You can reach out to me via the contact section!",
     };
 
-    const chatbotInput = document.getElementById('chatbotInput');
-    const chatbotMessages = document.getElementById('chatbotMessages');
+    // Toggle chat window visibility on button click
+    chatbotButton.addEventListener('click', () => {
+        chatbotWindow.classList.toggle('open'); // Show/hide chat window
+    });
 
+    // Chatbot response function
     chatbotInput.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
-            const userInput = chatbotInput.value.toLowerCase();
+            const userInput = chatbotInput.value.toLowerCase().trim();
+            if (!userInput) return; // Ignore empty input
+
             const response = responses[userInput] || "I'm here to help, but I didn’t understand that.";
+
+            // Display user message
             const userMessage = document.createElement('div');
             userMessage.className = 'chatbot-user';
             userMessage.textContent = chatbotInput.value;
             chatbotMessages.appendChild(userMessage);
 
+            // Display bot message
             const botMessage = document.createElement('div');
             botMessage.className = 'chatbot-bot';
             botMessage.textContent = response;
             chatbotMessages.appendChild(botMessage);
 
+            // Clear input and scroll to latest message
             chatbotInput.value = '';
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
         }
     });
-}
-
-document.addEventListener('DOMContentLoaded', initChatbot);
-
+});
